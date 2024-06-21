@@ -4,9 +4,11 @@ import com.coker.employee_management_system.model.Leave;
 import com.coker.employee_management_system.repository.LeaveRepository;
 import com.coker.employee_management_system.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LeaveServiceImpl implements LeaveService {
 
     @Autowired

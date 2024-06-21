@@ -4,9 +4,11 @@ import com.coker.employee_management_system.model.Salary;
 import com.coker.employee_management_system.repository.SalaryRepository;
 import com.coker.employee_management_system.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SalaryServiceImpl implements SalaryService {
 
     @Autowired

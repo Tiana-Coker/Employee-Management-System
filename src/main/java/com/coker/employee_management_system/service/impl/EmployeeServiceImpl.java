@@ -29,19 +29,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(Long id, Employee employee) {
-        Employee existingEmployee = employeeRepository.findById(id).orElse(null);
-        if (existingEmployee != null) {
-            existingEmployee.setFirstName(employee.getFirstName());
-            existingEmployee.setLastName(employee.getLastName());
-            existingEmployee.setDepartment(employee.getDepartment());
-            return employeeRepository.save(existingEmployee);
-        }
-        return null;
+    public Employee updateEmployee( Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     @Override
-    public void deleteEmployee(Long id) {
+    public void deleteEmployeeById(Long id) {
       employeeRepository.deleteById(id);
     }
 }

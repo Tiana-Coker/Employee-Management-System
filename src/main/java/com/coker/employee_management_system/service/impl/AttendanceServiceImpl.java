@@ -4,9 +4,11 @@ import com.coker.employee_management_system.model.Attendance;
 import com.coker.employee_management_system.repository.AttendanceRepository;
 import com.coker.employee_management_system.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AttendanceServiceImpl implements AttendanceService {
     @Autowired
     private AttendanceRepository attendanceRepository;
