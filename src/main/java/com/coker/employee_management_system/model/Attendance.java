@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name="attendance_tbl")
@@ -17,13 +19,13 @@ import org.springframework.data.annotation.Id;
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private AttendanceStatus attendanceStatus;
-    private String date;
-    private String time_in;
-    private String time_out;
+    private LocalDate date;
+    private LocalTime time_in;
+    private LocalTime time_out;
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)

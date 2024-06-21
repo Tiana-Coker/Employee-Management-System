@@ -7,7 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "leave_tbl")
@@ -18,13 +19,13 @@ import org.springframework.data.annotation.Id;
 public class Leave {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private LeaveType leaveType;
 
-    private String start_date;
-    private String end_date;
+    private LocalDate start_date;
+    private LocalDate end_date;
 
     @Enumerated(EnumType.STRING)
     private LeaveStatus leaveStatus;
