@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave Requests</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+    </style>
+</head>
+<body class="bg-white text-black min-h-screen flex flex-col items-center justify-center">
+<!-- Navbar -->
+<nav class="bg-black text-white w-full py-4">
+    <div class="container mx-auto flex justify-between items-center px-4">
+        <h1 class="text-3xl font-bold">Leave Requests</h1>
+        <a href="/employee-dashboard" class="text-lg font-medium">Back to Dashboard</a>
+    </div>
+</nav>
+
+<!-- Form Section -->
+<div class="container mx-auto mt-8 px-6 py-8 bg-gray-100 rounded-lg shadow-lg max-w-lg">
+    <h2 class="text-2xl font-bold mb-4">Request Leave</h2>
+    <form th:action="@{/request-leave}" method="post" class="space-y-4">
+        <div class="flex flex-col space-y-2">
+            <label for="leaveType" class="font-medium">Leave Type:</label>
+            <select name="leaveType" id="leaveType" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black">
+                <option value="Sick_Leave">Sick Leave</option>
+                <option value="Annual_Leave">Annual Leave</option>
+                <option value="Maternity_Leave">Maternity Leave</option>
+            </select>
+        </div>
+
+        <div class="flex flex-col space-y-2">
+            <label for="start_date" class="font-medium">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black">
+        </div>
+
+        <div class="flex flex-col space-y-2">
+            <label for="end_date" class="font-medium">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black">
+        </div>
+
+        <button type="submit" class="w-full bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-300">Request Leave</button>
+    </form>
+</div>
+
+<!-- Leave Requests Section -->
+<div class="container mx-auto mt-8 px-6 py-8 bg-gray-100 rounded-lg shadow-lg max-w-lg">
+    <h2 class="text-2xl font-bold mb-4">Your Leave Requests</h2>
+    <ul>
+        <li th:each="leaveRequest : ${leaveRequests}" class="border-b border-gray-300 py-4">
+            <p class="font-medium">Type: <span th:text="${leaveRequest.leaveType}">Type</span></p>
+            <p class="font-medium">Status: <span th:text="${leaveRequest.leaveStatus}">Status</span></p>
+            <p class="font-medium">Start Date: <span th:text="${leaveRequest.start_date}">Start Date</span></p>
+            <p class="font-medium">End Date: <span th:text="${leaveRequest.end_date}">End Date</span></p>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

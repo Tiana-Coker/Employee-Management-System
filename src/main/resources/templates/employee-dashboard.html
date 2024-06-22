@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .card {
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease;
+        }
+        .card:hover {
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!--<h1>Welcome, <span th:text="${name}"></span> <span th:text="${lastname}"></span>!</h1>
+<p>You are an employee</p>
+<a th:href="@{/employee-logout}">Logout</a>-->
+
+<!-- Navbar -->
+<nav class="bg-black text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold">Employee Dashboard</h1>
+        </div>
+        <div>
+            <span th:text="'Welcome, ' + ${name} +' '+${lastname} " class="text-lg font-medium"></span>
+            <a th:href="@{/employee-logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mx-auto flex-grow p-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Profile Link -->
+        <a href="/profile" class="block p-6 card shadow-lg rounded-lg text-center hover:bg-gray-100">
+            <svg class="w-12 h-12 mx-auto mb-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 19a3 3 0 00.876-2.12v-2.24A4.992 4.992 0 0012 9a4.992 4.992 0 005.121 5.64v2.24A3 3 0 0018 19m-4.88-5A4.992 4.992 0 0112 9a4.992 4.992 0 01-4.879 5m4.879 5a3 3 0 11-6 0 3 3 0 016 0zm6 0a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <h2 class="text-xl font-bold">Profile</h2>
+        </a>
+
+        <!-- Attendance Link -->
+        <a href="/attendance" class="block p-6 card shadow-lg rounded-lg text-center hover:bg-gray-100">
+            <svg class="w-12 h-12 mx-auto mb-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h2 class="text-xl font-bold">Attendance</h2>
+        </a>
+
+        <!-- Leave Requests Link -->
+        <a href="/leave-requests" class="block p-6 card shadow-lg rounded-lg text-center hover:bg-gray-100">
+            <svg class="w-12 h-12 mx-auto mb-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <h2 class="text-xl font-bold">Leave Requests</h2>
+        </a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-black text-white p-4 text-center">
+    <p>&copy; 2024 Employee Management System</p>
+</footer>
+
+</body>
+</html>

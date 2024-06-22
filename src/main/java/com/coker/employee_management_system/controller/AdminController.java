@@ -2,7 +2,6 @@ package com.coker.employee_management_system.controller;
 
 import com.coker.employee_management_system.model.Employee;
 import com.coker.employee_management_system.repository.EmployeeRepository;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class EmployeeController {
+public class AdminController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @GetMapping("/employee-login")
+    @GetMapping("/admin-login")
     public String showLoginForm(){
-        return "employee-login";
+        return "admin-login";
     }
 
-    @PostMapping("/employee-login")
+    @PostMapping("/admin-login")
     public String login(HttpServletRequest request, Model model){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -31,18 +30,17 @@ public class EmployeeController {
         if(employee != null && employee.getPassword().equals(password)){
             HttpSession session = request.getSession();
             session.setAttribute("employee", employee);
-            model.addAttribute("name", employee.getFirstName());
-            model.addAttribute("lastname",employee.getLastName());
-            return "employee-dashboard";
+            model.addAttribute("name", employee.getUsername());
+            return "admin-dashboard";
         }else{
             model.addAttribute("error","Invalid username or password");
-            return "employee-login";
+            return "admin-login";
         }
     }
 
-
-     @GetMapping("/employee-logout")
-        public String logout(HttpSession session){
-            session.invalidate();
-            return "redirect:/employee-login";
-}       }
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/admin-login";
+    }
+}

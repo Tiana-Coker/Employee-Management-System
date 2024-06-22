@@ -1,0 +1,13 @@
+Employee Features:
+
+    Login: Employees can log in to their dashboard.
+    Dashboard: Displays a welcome message with the employee's name.
+    My Profile: Employees can view their personal details (name, email, username) and update them (except department and salary).
+    Mark Attendance: Employees can mark their attendance using a form.
+    Request Leave: Employees can submit a leave request using a form.
+
+Admin Features:
+
+    Login: Admin can log in to their dashboard.
+    Dashboard: Shows a list of all employees, attendance records of each employee, and leave requests.
+    Manage Leave Requests: Admin can approve or reject leave requests submitted by employees. The status of the request should be visible to employees.

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -22,10 +23,11 @@ public class Attendance {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private AttendanceStatus attendanceStatus;
+    private AttendanceStatus attendanceStatus = AttendanceStatus.Absent;
+
     private LocalDate date;
-    private LocalTime time_in;
-    private LocalTime time_out;
+    private LocalDateTime clockInTime;
+    private LocalDateTime clockOutTime;
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)

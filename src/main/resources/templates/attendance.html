@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- Navbar -->
+<nav class="bg-black text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold">Attendance</h1>
+        </div>
+        <div>
+            <a th:href="@{/employee-dashboard}">Dashboard</a>
+            <a th:href="@{/employee-logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mx-auto flex-grow p-8">
+    <h2 class="text-2xl mb-4">Attendance Records</h2>
+    <table class="table-auto w-full">
+        <thead>
+        <tr>
+            <th class="px-4 py-2">Date</th>
+            <th class="px-4 py-2">Clock In</th>
+            <th class="px-4 py-2">Clock Out</th>
+            <th class="px-4 py-2">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="attendance : ${attendances}">
+            <td class="border px-4 py-2" th:text="${attendance.date}">Date</td>
+            <td class="border px-4 py-2" th:text="${attendance.clockInTime}">Clock In</td>
+            <td class="border px-4 py-2" th:text="${attendance.clockOutTime}">Clock Out</td>
+            <td class="border px-4 py-2" th:text="${attendance.attendanceStatus}">Status</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <form th:action="@{/mark-attendance}" method="post">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Clock In</button>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        <form th:action="@{/clock-out}" method="post">
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Clock Out</button>
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-black text-white p-4 text-center">
+    <p>&copy; 2024 Employee Management System</p>
+</footer>
+
+</body>
+</html>

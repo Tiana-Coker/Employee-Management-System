@@ -1,12 +1,18 @@
 package com.coker.employee_management_system.service.impl;
 
+import com.coker.employee_management_system.enums.AttendanceStatus;
 import com.coker.employee_management_system.model.Attendance;
+import com.coker.employee_management_system.model.Employee;
 import com.coker.employee_management_system.repository.AttendanceRepository;
 import com.coker.employee_management_system.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
+
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
@@ -14,35 +20,32 @@ public class AttendanceServiceImpl implements AttendanceService {
     private AttendanceRepository attendanceRepository;
 
     @Override
-    public List<Attendance> getAllAttendances() {
-        return attendanceRepository.findAll();
-    }
+    public Attendance markAttendance(Employee employee) {
+        Attendance attendance = new Attendance();
+        attendance.setEmployee(employee);
+        attendance.setDate(LocalDate.now());
+        attendance.setClockInTime(LocalDateTime.now());
+        attendance.setAttendanceStatus(AttendanceStatus.Present);
 
-    @Override
-    public Attendance getAttendanceById(Long id) {
-        return attendanceRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Attendance saveAttendance(Attendance attendance) {
         return attendanceRepository.save(attendance);
     }
 
     @Override
-    public Attendance updateAttendance(Long id, Attendance attendance) {
-        Attendance existingAttendance = attendanceRepository.findById(id).orElse(null);
-        if (existingAttendance != null) {
-            existingAttendance.setAttendanceStatus(attendance.getAttendanceStatus());
-            existingAttendance.setDate(attendance.getDate());
-            existingAttendance.setTime_in(attendance.getTime_in());
-            existingAttendance.setTime_out(attendance.getTime_out());
-            return attendanceRepository.save(existingAttendance);
+    public Attendance markClockOut(Employee employee){
+        Attendance attendance = attendanceRepository.findTopByEmployeeOrderByClockInTimeDesc(employee);
+        if(attendance != null && attendance.getClockOutTime() == null){
+            attendance.setClockOutTime(LocalDateTime.now());
+            attendanceRepository.save(attendance);
         }
-        return null;
+        return attendance;
     }
 
+
+
     @Override
-    public void deleteAttendance(Long id) {
-        attendanceRepository.deleteById(id);
+    public List<Attendance> getAttendanceByEmployee(Employee employee) {
+        return attendanceRepository.findByEmployee(employee);
     }
+
+
 }

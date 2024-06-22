@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Leave {
+public class LeaveRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +28,7 @@ public class Leave {
     private LocalDate end_date;
 
     @Enumerated(EnumType.STRING)
-    private LeaveStatus leaveStatus;
+    private LeaveStatus leaveStatus =LeaveStatus.Pending;
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)

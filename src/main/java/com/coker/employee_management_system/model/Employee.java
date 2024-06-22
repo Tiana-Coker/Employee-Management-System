@@ -1,6 +1,5 @@
 package com.coker.employee_management_system.model;
 
-import com.coker.employee_management_system.enums.AttendanceStatus;
 import com.coker.employee_management_system.enums.Department;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,7 +21,10 @@ public class Employee {
 
     private String firstName;
     private String lastName;
+    private String username;
     private String email;
+    private String password;
+    private Double salary;
 
     @Enumerated(EnumType.STRING)
     private Department department;
@@ -33,7 +35,7 @@ public class Employee {
 
     // This means one employee can have many leaves
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Leave> leaves;
+    private List<LeaveRequest> leaves;
 
     // This means one employee can have many salaries
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
