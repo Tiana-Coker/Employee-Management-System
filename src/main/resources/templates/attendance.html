@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Attendance</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #20123A;
+            color: #b8adcc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar, .footer {
+            background-color: #381280;
+            color: #b8adcc;
+        }
+
+        .navbar a, .footer a {
+            color: #b8adcc;
+            margin-left: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover, .footer a:hover {
+            color: #fff;
+        }
+
+        .table-auto th, .table-auto td {
+            border: 1px solid #b8adcc;
+        }
+
+        .table-auto th {
+            background-color: #381280;
+            color: #b8adcc;
+        }
+
+        .table-auto td {
+            color: #20123A;
+            background-color: #b8adcc;
+        }
+
+        .btn {
+            background-color: #381280;
+            color: #20123A;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #4a167f;
+        }
+
+        .btn-clock-in {
+            background-color: #4CAF50; /* Green */
+        }
+
+        .btn-clock-in:hover {
+            background-color: #45a049;
+        }
+
+        .btn-clock-out {
+            background-color: #f44336; /* Red */
+        }
+
+        .btn-clock-out:hover {
+            background-color: #da190b;
+        }
+    </style>
 </head>
+
 <body class="min-h-screen flex flex-col">
 <!-- Navbar -->
-<nav class="bg-black text-white p-4">
+<nav class="navbar p-4">
     <div class="container mx-auto flex justify-between items-center">
         <div>
             <h1 class="text-3xl font-bold">Attendance</h1>
@@ -22,7 +90,7 @@
 <!-- Main Content -->
 <div class="container mx-auto flex-grow p-8">
     <h2 class="text-2xl mb-4">Attendance Records</h2>
-    <table class="table-auto w-full">
+    <table class="table-auto w-full mb-4">
         <thead>
         <tr>
             <th class="px-4 py-2">Date</th>
@@ -41,23 +109,20 @@
         </tbody>
     </table>
 
-    <div class="mt-4">
+    <div class="flex justify-between">
         <form th:action="@{/mark-attendance}" method="post">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Clock In</button>
+            <button type="submit" class="btn btn-clock-in">Clock In</button>
         </form>
-    </div>
-
-    <div class="mt-4">
         <form th:action="@{/clock-out}" method="post">
-            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Clock Out</button>
+            <button type="submit" class="btn btn-clock-out">Clock Out</button>
         </form>
     </div>
 </div>
 
 <!-- Footer -->
-<footer class="bg-black text-white p-4 text-center">
+<footer class="footer p-4 text-center">
     <p>&copy; 2024 Employee Management System</p>
 </footer>
-
 </body>
+
 </html>

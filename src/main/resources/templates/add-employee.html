@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #20123A;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #20123A;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #b8adcc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #20123A;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #381280;
+        }
+
+        input,
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #381280;
+            border-radius: 4px;
+            font-size: 1rem;
+            color: #20123A;
+            background-color: #b8adcc;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #381280;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4f1d9c;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #20123A;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #381280;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Add Employee</h1>
+    <form th:action="@{/add-employee}" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="department">Department:</label>
+        <select name="department" id="department">
+            <option value="IT">IT</option>
+            <option value="HR">HR</option>
+            <option value="Finance">Finance</option>
+            <option value="Marketing">Marketing</option>
+        </select>
+
+        <label for="salary">Salary:</label>
+        <input type="text" id="salary" name="salary" required>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Add Employee</button>
+    </form>
+    <a href="/admin-dashboard">Back to Dashboard</a>
+</div>
+</body>
+
+</html>

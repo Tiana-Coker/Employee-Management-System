@@ -43,4 +43,18 @@ public class AdminController {
         session.invalidate();
         return "redirect:/admin-login";
     }
+
+
+
+    @GetMapping("/admin-dashboard")
+    public String showAdminDashboard(HttpSession session, Model model){
+        Employee employee = (Employee) session.getAttribute("employee");
+        if(employee == null){
+            return "redirect:/admin-login";
+        }
+        String name = (String) session.getAttribute("name");
+        model.addAttribute("name", name);
+        return "admin-dashboard";
+    }
+
 }

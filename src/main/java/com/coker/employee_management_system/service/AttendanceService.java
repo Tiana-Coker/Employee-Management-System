@@ -10,4 +10,5 @@ public interface AttendanceService {
     Attendance markAttendance(Employee employee);
     List<Attendance> getAttendanceByEmployee(Employee employee);
     Attendance markClockOut(Employee employee);
+    List<Attendance>getAllAttendances();
 }

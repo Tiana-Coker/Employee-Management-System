@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta charset="UTF-8">
   <title>Profile</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
+        background-color: #20123A;
+        color: #b8adcc;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .profile-card {
         background-color: #ffffff;
-        color: #000000;
+        color: #20123A;
+        transition: background-color 0.3s ease;
+    }
+
+    .profile-card:hover {
+        background-color: #f0f0f0;
+    }
+
+    .btn-back {
+        background-color: #381280;
+        color: #ffffff;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-back:hover {
+        background-color: #4a167f;
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
 <!-- Profile Card -->
-<div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md mx-auto mt-10">
+<div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md mx-auto mt-10 profile-card">
   <h1 class="text-2xl font-bold mb-4 text-center">Profile</h1>
   <div class="mb-4">
     <label class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-    <span th:text="${employee.firstName} + ' ' + ${employee.lastName}" class="block text-lg text-black"></span>
+    <span th:text="${employee.firstName} + ' ' + ${employee.lastName}"
+          class="block text-lg text-black"></span>
   </div>
   <div class="mb-4">
     <label class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
@@ -36,10 +62,12 @@
     <span th:text="${employee.salary}" class="block text-lg text-black"></span>
   </div>
   <div class="flex justify-center">
-    <a href="/employee-dashboard" class="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300">
+    <a href="/employee-dashboard"
+       class="btn-back py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300">
       Back to Dashboard
     </a>
   </div>
 </div>
 </body>
+
 </html>

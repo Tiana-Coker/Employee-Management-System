@@ -1,37 +1,108 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #F9F9F9; /* Light gray background */
+        }
+
+        .login-container {
+            background-color: #FFFFFF; /* White background */
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(32, 18, 58, 0.1); /* Soft shadow */
+            max-width: 24rem; /* Limit width for smaller screens */
+            margin: auto;
+        }
+
+        .login-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #20123A; /* Dark purple text */
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            color: #20123A; /* Dark purple label */
+            font-size: 0.875rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 1px solid #D1D5DB; /* Light gray border */
+            border-radius: 0.375rem;
+            background-color: #F9F9F9; /* Light gray background */
+            color: #20123A; /* Dark purple text */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #805AD5; /* Lighter purple when focused */
+            box-shadow: 0 0 0 2px rgba(128, 90, 213, 0.3); /* Lighter purple shadow when focused */
+        }
+
+        .error-message {
+            color: #E53E3E; /* Red error message */
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .login-button {
+            background-color: #20123A; /* Dark purple button */
+            color: #FFFFFF; /* White text */
+            font-weight: bold;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #805AD5; /* Lighter purple on hover */
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+
+<body>
 <div class="min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded shadow-md w-full max-w-sm">
-        <h2 class="text-2xl font-bold mb-6 text-gray-900">Admin Login</h2>
+    <div class="login-container">
+        <h2 class="login-title">Admin Login</h2>
         <form th:action="@{/admin-login}" method="post">
             <div class="mb-4">
-                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <label for="username" class="form-label">Username</label>
                 <input type="text" id="username" name="username" required
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                       class="form-input focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-6">
-                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" name="password" required
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+                       class="form-input focus:outline-none focus:shadow-outline">
             </div>
             <!-- Error Message Section -->
-            <div th:if="${error}" class="mb-4 text-red-500 text-sm">
+            <div th:if="${error}" class="error-message">
                 <p th:text="${error}"></p>
             </div>
 
-            <div class="flex items-center justify-between">
-                <button type="submit" class="bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Login
-                </button>
-            </div>
+            <button type="submit" class="login-button">
+                Login
+            </button>
         </form>
     </div>
 </div>
 </body>
+
 </html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Employees</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #20123A;
+            color: #20123A;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        .header {
+            background-color: #20123A;
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .btn-back {
+            background-color: #381280;
+            color: #ffffff;
+            padding: 0.75rem 1rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #4f1d9c;
+        }
+
+        .table-container {
+            background-color: #b8adcc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+        }
+
+        .table th,
+        .table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #381280;
+        }
+
+        .table th {
+            background-color: #381280;
+            color: #ffffff;
+        }
+
+        .table td {
+            background-color: #b8adcc;
+        }
+
+        .table tbody tr:hover {
+            background-color: #381280;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <h1 class="text-3xl font-bold mb-4">View Employees</h1>
+    <a href="/admin-dashboard" class="btn-back">Back to Dashboard</a>
+</div>
+
+<div class="container mx-auto p-8">
+    <div class="table-container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="py-3">First Name</th>
+                <th class="py-3">Last Name</th>
+                <th class="py-3">Department</th>
+                <th class="py-3">Salary</th>
+                <th class="py-3">Username</th>
+                <th class="py-3">Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${employees}" class="hover:bg-gray-100">
+                <td class="py-3" th:text="${employee.firstName}">First Name</td>
+                <td class="py-3" th:text="${employee.lastName}">Last Name</td>
+                <td class="py-3" th:text="${employee.department}">Department</td>
+                <td class="py-3" th:text="${employee.salary}">Salary</td>
+                <td class="py-3" th:text="${employee.username}">Username</td>
+                <td class="py-3" th:text="${employee.email}">Email</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,7 +1,9 @@
 package com.coker.employee_management_system.controller;
 
+import com.coker.employee_management_system.enums.Department;
 import com.coker.employee_management_system.model.Employee;
 import com.coker.employee_management_system.repository.EmployeeRepository;
+import com.coker.employee_management_system.service.EmployeeService;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class EmployeeController {
@@ -45,4 +48,42 @@ public class EmployeeController {
         public String logout(HttpSession session){
             session.invalidate();
             return "redirect:/employee-login";
-}       }
+}
+
+      @GetMapping("/add-employee")
+      public String showAddEmployeeForm(){
+        return "add-employee";
+      }
+
+      @PostMapping("/add-employee")
+      public String addEmployee(HttpServletRequest request, Model model){
+          String firstName = request.getParameter("firstName");
+          String lastName = request.getParameter("lastName");
+          Department department = Department.valueOf(request.getParameter("department"));
+          Double salary = Double.valueOf(request.getParameter("salary"));
+          String username = request.getParameter("username");
+          String email = request.getParameter("email");
+          String password = request.getParameter("password");
+
+          Employee employee = new Employee();
+          employee.setFirstName(firstName);
+          employee.setLastName(lastName);
+          employee.setDepartment(department);
+          employee.setSalary(salary);
+          employee.setUsername(username);
+          employee.setEmail(email);
+          employee.setPassword(password);
+
+          employeeRepository.save(employee);
+          return "redirect:/admin-dashboard";
+
+      }
+
+
+     @GetMapping("/view-employees")
+     public String viewEmployees(Model model){
+        model.addAttribute("employees",employeeRepository.findAll());
+        return "view-employees";
+     }
+
+}

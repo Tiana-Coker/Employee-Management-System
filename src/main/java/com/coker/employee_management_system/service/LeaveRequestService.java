@@ -12,4 +12,5 @@ public interface LeaveRequestService {
     LeaveRequest requestLeave(Employee employee, LeaveType leaveType, LocalDate start_date, LocalDate end_date);
     List<LeaveRequest> getLeaveRequestByEmployee(Employee employee);
     LeaveRequest updateLeaveStatus(Long id, LeaveStatus leaveStatus);
+    List<LeaveRequest>getAllLeaveRequests();
 }

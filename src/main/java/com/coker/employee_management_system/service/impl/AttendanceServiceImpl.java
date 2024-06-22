@@ -48,4 +48,10 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
 
+    @Override
+    public List<Attendance> getAllAttendances() {
+        return attendanceRepository.findAll();
+    }
+
+
 }

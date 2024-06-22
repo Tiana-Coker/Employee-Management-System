@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Leave Requests</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #20123A;
+            color: #20123A;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            background-color: #b8adcc;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #381280;
+        }
+
+        th {
+            background-color: #381280;
+            color: #ffffff;
+        }
+
+        td {
+            background-color: #b8adcc;
+        }
+
+        tr:hover {
+            background-color: #381280;
+            color: #ffffff;
+        }
+
+        select {
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid #381280;
+            background-color: #b8adcc;
+            color: #20123A;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #381280;
+            background-color: #ffffff;
+        }
+
+        button {
+            background-color: #381280;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4f1d9c;
+        }
+
+        .btn-back {
+            background-color: #381280;
+            color: #ffffff;
+            padding: 0.75rem 1rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #4f1d9c;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container mx-auto">
+    <h1>Leave Requests</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Leave Type</th>
+            <th>Leave Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="leaveRequest : ${leaveRequests}" class="hover:bg-gray-100">
+            <td th:text="${leaveRequest.employee.firstName}">First Name</td>
+            <td th:text="${leaveRequest.leaveType}">Leave Type</td>
+            <td th:text="${leaveRequest.leaveStatus}">Leave Status</td>
+            <td>
+                <form th:action="@{/update-leave-status}" method="post">
+                    <input type="hidden" name="leaveRequestId" th:value="${leaveRequest.id}">
+                    <select name="leaveStatus">
+                        <option value="Pending" th:selected="${leaveRequest.leaveStatus}=='Pending'">Pending</option>
+                        <option value="Approved" th:selected="${leaveRequest.leaveStatus}=='Approved'">Approved</option>
+                        <option value="Rejected" th:selected="${leaveRequest.leaveStatus}=='Rejected'">Rejected</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/admin-dashboard" class="btn-back">Back to Dashboard</a>
+</div>
+</body>
+
+</html>

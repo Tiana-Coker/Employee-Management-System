@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class AttendanceController {
     @Autowired
@@ -44,5 +46,16 @@ public class AttendanceController {
         }
         attendanceService.markClockOut(employee);
         return "redirect:/attendance";
+    }
+
+    @GetMapping("/view-attendance")
+    public String viewAllAttendance(Model model, HttpSession session){
+        Employee employee = (Employee) session.getAttribute("employee");
+        if (employee == null) {
+            return "redirect:/admin-login";
+        }
+        List<Attendance> attendances = attendanceService.getAllAttendances();
+        model.addAttribute("attendances", attendances);
+        return "view-attendance";
     }
 }
