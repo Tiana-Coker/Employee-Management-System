@@ -8,7 +8,7 @@ This project is an Employee Management System built using Spring MVC and Thymele
 ### Employee Features
 - **Login**: Employees can log in to their dashboard.
 - **Dashboard**: Displays a welcome message with the employee's name.
-- **My Profile**: Employees can view their personal details (name, email, username) and update them (except department and salary).
+- **My Profile**: Employees can view their personal details.
 - **Mark Attendance**: Employees can mark their attendance using a form.
 - **Request Leave**: Employees can submit a leave request using a form.
 
