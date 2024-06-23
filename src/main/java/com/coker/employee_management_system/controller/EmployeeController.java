@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class EmployeeController {
     @Autowired
@@ -82,7 +84,8 @@ public class EmployeeController {
 
      @GetMapping("/view-employees")
      public String viewEmployees(Model model){
-        model.addAttribute("employees",employeeRepository.findAll());
+         List<Employee>employees = employeeRepository.findAllExcludingAdmins();
+        model.addAttribute("employees",employees);
         return "view-employees";
      }
 

@@ -11,3 +11,14 @@ Admin Features:
     Login: Admin can log in to their dashboard.
     Dashboard: Shows a list of all employees, attendance records of each employee, and leave requests.
     Manage Leave Requests: Admin can approve or reject leave requests submitted by employees. The status of the request should be visible to employees.
+
+    Color Scheme:
+    #20123A (dark purple) ,#b8adcc (light purple),#381280 (medium purple)
+
+    Order of Creation
+    model
+    repository
+    service
+    controller
+    templates
+    configuration
