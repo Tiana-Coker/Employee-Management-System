@@ -22,3 +22,13 @@ Admin Features:
     controller
     templates
     configuration
+
+    The dependencies i added
+
+     Spring Web
+     Spring Data JPA SQL
+     MySQL Driver SQL
+    MySQL JDBC driver.
+    Thymeleaf Template Engines
+    Lombok Developer Tools
+
