@@ -37,10 +37,5 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LeaveRequest> leaves;
 
-    // This means one employee can have many salaries
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Salary> salaries;
-
-
 
 }

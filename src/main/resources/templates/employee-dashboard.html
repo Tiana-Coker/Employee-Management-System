@@ -7,50 +7,53 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #20123A;
-            color: #b8adcc;
+            background-color: #f0f0f7; /* Light grayish background */
+            color: #20123A;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
         }
 
         .card {
-            background-color: #ffffff;
+            background-color: #f0f0f7; /* Light grayish background */
+            border: 2px solid rgba(32, 18, 58, 0.2); /* Light outline color */
             color: #20123A;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            background-color: #f0f0f0;
+            background-color: #f5f3f7; /* Light grayish background on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .nav-bg {
-            background-color: #20123A;
+            background-color: #f0f0f7; /* Light grayish background */
         }
 
         .nav-text {
-            color: #ffffff;
+            color: #20123A;
         }
 
         .footer-bg {
-            background-color: #20123A;
+            background-color: #f0f0f7; /* Light grayish background */
         }
 
         .footer-text {
-            color: #ffffff;
+            color: #20123A;
         }
     </style>
 </head>
 
 <body class="min-h-screen flex flex-col">
 <!-- Navbar -->
-<nav class="nav-bg text-white p-4">
+<nav class="nav-bg p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
         <div>
-            <h1 class="text-3xl font-bold">Employee Dashboard</h1>
+            <h1 class="text-3xl font-bold text-20123A">Employee Dashboard</h1>
         </div>
         <div>
-            <span th:text="'Welcome, ' + ${name} + ' ' + ${lastname}" class="text-lg font-medium"></span>
+            <span th:text="'Welcome, ' + ${name} + ' ' + ${lastname}" class="text-lg font-medium nav-text"></span>
             <a th:href="@{/employee-logout}" class="nav-text ml-4">Logout</a>
         </div>
     </div>
@@ -60,7 +63,7 @@
 <div class="container mx-auto flex-grow p-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Profile Link -->
-        <a href="/profile" class="block p-6 card shadow-lg rounded-lg text-center hover:bg-gray-100">
+        <a href="/profile" class="block p-6 card shadow-lg rounded-lg text-center">
             <svg class="w-12 h-12 mx-auto mb-4 text-20123A" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -71,7 +74,7 @@
         </a>
 
         <!-- Attendance Link -->
-        <a href="/attendance" class="block p-6 card shadow-lg rounded-lg text-center hover:bg-gray-100">
+        <a href="/attendance" class="block p-6 card shadow-lg rounded-lg text-center">
             <svg class="w-12 h-12 mx-auto mb-4 text-20123A" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -81,7 +84,7 @@
         </a>
 
         <!-- Leave Requests Link -->
-        <a href="/leave-requests" class="block p-6 card shadow-lg rounded-lg text-center hover:bg-gray-100">
+        <a href="/leave-requests" class="block p-6 card shadow-lg rounded-lg text-center">
             <svg class="w-12 h-12 mx-auto mb-4 text-20123A" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -93,7 +96,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="footer-bg footer-text p-4 text-center">
+<footer class="footer-bg footer-text p-4 text-center shadow-t-md">
     <p>&copy; 2024 Employee Management System</p>
 </footer>
 

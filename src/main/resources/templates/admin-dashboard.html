@@ -7,52 +7,89 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <style>
         body {
-            background-color: #20123A;
-            color: #ffffff;
+            background-color: #f0f0f7; /* Light grayish background */
+            color: #20123A; /* Text color */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
         }
 
-        .header {
-            background-color: #381280;
+        .sidebar {
+            width: 240px; /* Sidebar width */
+            height: 100vh; /* Full viewport height */
+            background-color: #381280; /* Dark purple sidebar */
             padding: 1rem;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Shadow for sidebar */
+            flex-shrink: 0; /* Sidebar should not shrink */
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            justify-content: space-between; /* Space evenly */
         }
 
-        .card {
-            background-color: #b8adcc;
-            color: #20123A;
+        .sidebar h1 {
+            font-size: 1.5rem; /* Reduced font size for Admin Dashboard */
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ffffff; /* White text for sidebar header */
+        }
+
+        .sidebar .btn-primary {
+            background-color: #956AE6; /* Button color for sidebar */
+            color: #ffffff; /* White text for sidebar button */
             transition: background-color 0.3s ease;
+            margin-top: auto; /* Push button to bottom */
         }
 
-        .card:hover {
-            background-color: #a59bbb;
+        .sidebar .btn-primary:hover {
+            background-color: #7E4FC6; /* Darker shade on hover */
         }
 
-        .btn-primary {
-            background-color: #381280;
-            color: #ffffff;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #4B2B7F;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
+        .main-content {
+            flex: 1; /* Take remaining space */
             padding: 2rem;
         }
 
+        .card {
+            background-color: #ffffff; /* White cards */
+            border: 1px solid #d2d6dc; /* Light border color */
+            color: #20123A; /* Text color */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            background-color: #f5f5f5; /* Light gray background on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #381280; /* Dark purple button */
+            color: #ffffff; /* White text */
+            transition: background-color 0.3s ease;
+            border: 1px solid #381280; /* Match button border color */
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #4B2B7F; /* Darker shade on hover */
+        }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: 2rem; /* Adjusted font size for main content headings */
             font-weight: bold;
             margin-bottom: 1rem;
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* Adjusted font size for card headings */
             font-weight: bold;
             margin-bottom: 1rem;
         }
@@ -60,18 +97,17 @@
 </head>
 
 <body>
-<header class="header">
-    <div class="container mx-auto">
-        <h1 class="text-3xl font-bold text-white">Admin Dashboard</h1>
-       <!-- <h2 class="text-lg mb-4 text-white">Welcome, <span th:text="${name}"></span>!</h2>-->
+<div class="sidebar">
+    <h1 class="text-xl font-bold">Admin Dashboard</h1>
+    <div>
         <a th:href="@{/logout}" class="btn-primary py-2 px-4 rounded">Logout</a>
     </div>
-</header>
-<main class="container mx-auto">
+</div>
+<div class="main-content">
     <div class="flex flex-wrap -mx-4 mt-8">
         <div class="w-full md:w-1/2 xl:w-1/3 p-4">
             <div class="card shadow-md p-4 rounded">
-                <h3 class="text-lg font-bold">Add User</h3>
+                <h2 class="text-lg font-bold">Add User</h2>
                 <form th:action="@{/add-employee}" method="get">
                     <button type="submit" class="btn-primary w-full mt-2">Add User</button>
                 </form>
@@ -79,7 +115,7 @@
         </div>
         <div class="w-full md:w-1/2 xl:w-1/3 p-4">
             <div class="card shadow-md p-4 rounded">
-                <h3 class="text-lg font-bold">View Employees</h3>
+                <h2 class="text-lg font-bold">View Employees</h2>
                 <form th:action="@{/view-employees}" method="get">
                     <button type="submit" class="btn-primary w-full mt-2">View Employees</button>
                 </form>
@@ -87,7 +123,7 @@
         </div>
         <div class="w-full md:w-1/2 xl:w-1/3 p-4">
             <div class="card shadow-md p-4 rounded">
-                <h3 class="text-lg font-bold">View Attendance Records</h3>
+                <h2 class="text-lg font-bold">View Attendance Records</h2>
                 <form th:action="@{/view-attendance}" method="get">
                     <button type="submit" class="btn-primary w-full mt-2">View Attendance Records</button>
                 </form>
@@ -95,14 +131,14 @@
         </div>
         <div class="w-full md:w-1/2 xl:w-1/3 p-4">
             <div class="card shadow-md p-4 rounded">
-                <h3 class="text-lg font-bold">View Leave Requests</h3>
+                <h2 class="text-lg font-bold">View Leave Requests</h2>
                 <form th:action="@{/view-leave-requests}" method="get">
                     <button type="submit" class="btn-primary w-full mt-2">View Leave Requests</button>
                 </form>
             </div>
         </div>
     </div>
-</main>
+</div>
 </body>
 
 </html>
